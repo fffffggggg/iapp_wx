@@ -3,16 +3,17 @@ import './app.scss'
 
 class App extends Component {
 
-  componentDidMount () {}
+  componentDidMount() { }
 
-  componentDidShow () {}
+  componentDidShow() { }
 
-  componentDidHide () {}
+  componentDidHide() { }
 
-  componentDidCatchError () {}
+  componentDidCatchError() { }
 
   // this.props.children 是将要会渲染的页面
-  render () {
+  render() {
+    console.log('this.props.children: ', this.props.children);
     return this.props.children
   }
 }
