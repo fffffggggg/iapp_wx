@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
 import { FooterBar } from '../components'
 import './index.scss'
-import Taro from '@tarojs/taro'
+// import Taro from '@tarojs/taro'
 import UserPage from '../user/index'
+import RouterComponent from '../router';
+
 interface ITabListMap {
   [name: number]: string
 }
 interface IState {
   current: number,
-  tabListMap: ITabListMap
 }
 
 interface IProps {
@@ -22,11 +23,6 @@ export default class Index extends Component<IProps, IState> {
     super(props)
     this.state = {
       current: 0,
-      tabListMap: {
-        0: 'pages/index/index',
-        1: 'pages/user/index',
-        2: 'pages/user/index'
-      }
     }
   }
   componentWillMount() { }
@@ -43,19 +39,15 @@ export default class Index extends Component<IProps, IState> {
     this.setState({
       current: val
     })
-    const url = this.state.tabListMap[val];
-    console.log('url: ', url);
-    // Taro.switchTab({
-    //   url
-    // })
   }
 
   render() {
+    const { current } = this.state;
     return (
       <View className='index'>
-        {
-          this.state.current == 2 ? <UserPage /> : <Text>{this.state.current}</Text>
-        }
+        {/* 页面 router */}
+        <RouterComponent current={current} />
+        {/* tabBar  */}
         <FooterBar handler={this.footerBarHandler} />
       </View>
     )

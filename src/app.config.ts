@@ -3,6 +3,7 @@ export default {
     'pages/index/index',
     // 'pages/user/index'
   ],
+  // 微信原生tabBar配置通过url跳转
   // tabBar: {
   //   //字体颜色
   //   // color: "#2c2c2c",
