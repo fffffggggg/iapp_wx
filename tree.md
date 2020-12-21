@@ -1,6 +1,3 @@
-使用taro开发微信小程序demo 
-
-
 ``` json
 ├── CHANGELOG.md
 ├── README.md
