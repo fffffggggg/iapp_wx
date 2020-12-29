@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, Text } from '@tarojs/components'
 import { FooterBar } from '../components'
 import './index.scss'
-// import Taro from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 import UserPage from '../user/index'
 import RouterComponent from '../router';
 
@@ -27,7 +27,11 @@ export default class Index extends Component<IProps, IState> {
   }
   componentWillMount() { }
 
-  componentDidMount() { }
+  componentDidMount() {
+    Taro.setNavigationBarTitle({
+      title: 'app'
+    })
+  }
 
   componentWillUnmount() { }
 

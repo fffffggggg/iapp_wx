@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { View, Text } from '@tarojs/components'
 import UserPage from '../user'
-
+// import Taro, { Component, Config } from "@tarojs/taro";
+import HomePage from '../home';
 interface IProps {
   current: number | string
 }
@@ -19,7 +20,7 @@ export default class RouterComponent extends React.Component<IProps, IState> {
     this.state = {
       // 页面组件的map
       pagesMap: {
-        0: "home",
+        0: <HomePage />,
         1: "feature",
         2: <UserPage />
       }
@@ -27,6 +28,12 @@ export default class RouterComponent extends React.Component<IProps, IState> {
   }
 
   renderPages = () => {
+    // if(this.props.current == 2){
+    //   Taro.reLaunch({
+    //     url:'pages/user/index'
+    //   })
+    //   return ''
+    // }
     return this.state.pagesMap[this.props.current]
   }
 
