@@ -11,10 +11,10 @@ export default class UserPage extends React.Component {
     Taro.setNavigationBarColor({
       frontColor: '#ffffff',
       backgroundColor: '#10e951',
-      animation: {
-        duration: 400,
-        timingFunc: 'easeIn'
-      }
+      // animation: {
+      //   duration: 400,
+      //   timingFunc: 'easeIn'
+      // }
     })
   }
 

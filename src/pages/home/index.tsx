@@ -42,10 +42,10 @@ export default class HomePage extends React.Component<any, any> {
     Taro.setNavigationBarColor({
       frontColor: '#ffffff',
       backgroundColor: '#106ee9',
-      animation: {
-        duration: 400,
-        timingFunc: 'easeIn'
-      }
+      // animation: {
+      //   duration: 400,
+      //   timingFunc: 'easeIn'
+      // }
     })
     Taro.setBackgroundTextStyle({
       textStyle: 'dark' // 下拉背景字体、loading 图的样式为dark

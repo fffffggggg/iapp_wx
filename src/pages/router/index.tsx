@@ -3,6 +3,7 @@ import { View, Text } from '@tarojs/components'
 import UserPage from '../user'
 // import Taro, { Component, Config } from "@tarojs/taro";
 import HomePage from '../home';
+import FeaturePage from '../feature';
 interface IProps {
   current: number | string
 }
@@ -21,7 +22,7 @@ export default class RouterComponent extends React.Component<IProps, IState> {
       // 页面组件的map
       pagesMap: {
         0: <HomePage />,
-        1: "feature",
+        1: <FeaturePage />,
         2: <UserPage />
       }
     }
