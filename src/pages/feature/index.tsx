@@ -3,7 +3,7 @@ import { View, Text, Swiper, SwiperItem } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import './index.scss'
 import { AtButton, AtInput } from 'taro-ui'
-
+import fetchData from '../../service'
 // http://42.192.74.35:8080/query/getLocationByIdCard
 export default class FeaturePage extends React.Component<any, any> {
 
@@ -23,7 +23,8 @@ export default class FeaturePage extends React.Component<any, any> {
   searchIdCard = async () => {
     const { idCard } = this.state;
     console.log('idCard: ', idCard);
-    const res = await Taro.request({ url: 'https://42.192.74.35:8080/query/getLocationByIdCard', data: { idCard }, method: 'POST' })
+    // const res = await Taro.request({ url: 'https://www.shijinzhengqian.cn/query/getLocationByIdCard', data: { requestData: { idCard } }, method: 'POST' })
+    const res = await fetchData.post("getLocationByIdCard", { requestData: { idCard } })
     console.log('res: ', res);
   }
 
