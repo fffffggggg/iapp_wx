@@ -1,6 +1,6 @@
 export default {
   pages: [
-    'pages/home/index',
+    'pages/index/index',
     'pages/feature/index',
     'pages/user/index',
     // 'pages/index/index'
@@ -19,7 +19,7 @@ export default {
       {
         iconPath: './icon/home.png',
         selectedIconPath: './icon/home-active.png',
-        pagePath: "pages/home/index",
+        pagePath: "pages/index/index",
         text: "首页"
       },
       {
