@@ -4,17 +4,17 @@ import { api, domain } from './api';
 
 
 
-interface FetchDataFun {
+export interface FetchDataFun {
   (path: string, params: { [name: string]: any }, method?: methodsType, option?: request.Option): RequestTask<any>
 }
-interface IFetchData {
+export interface IFetchData {
   post: FetchDataFun,
   get: FetchDataFun
 }
 
 
 
-type methodsType = "OPTIONS" | "POST" | "GET" | "HEAD" | "PUT" | "DELETE" | "TRACE" | "CONNECT";
+export type methodsType = "OPTIONS" | "POST" | "GET" | "HEAD" | "PUT" | "DELETE" | "TRACE" | "CONNECT";
 /**
  * 默认请求封装
  *

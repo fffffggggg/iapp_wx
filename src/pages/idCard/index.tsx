@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { View, Text } from '@tarojs/components'
-import fetchData from '@/service'
 import { AtButton, AtInput } from 'taro-ui'
 
 export default class IDCardPage extends React.Component<any, any> {
@@ -19,6 +18,7 @@ export default class IDCardPage extends React.Component<any, any> {
   }
   searchIdCard = async () => {
     const { idCard } = this.state;
+    const { fetchData } = this.props;
     const res = await fetchData.post("getLocationByIdCard", { idCard })
     console.log('res: ', res);
   }

@@ -1,11 +1,11 @@
 
 import Taro from '@tarojs/taro'
 
-interface IRoute {
+export interface IRoute {
   [key: string]: string
 }
 
-const routes: IRoute = {
+export const routes: IRoute = {
   idCard: "/pages/idCard/index"
 }
 
@@ -15,7 +15,21 @@ export const navigateTo = (option: Taro.navigateTo.Option) => {
 
 export const navigateBack = (option: Taro.navigateBack.Option) => {
   Taro.navigateBack(option)
-
 }
 
-export default routes;
+interface INavigate {
+  (option: Taro.navigateBack.Option): void
+}
+interface IRouter {
+  routes: IRoute,
+  navigateBack: INavigate,
+  navigateTo: INavigate,
+}
+
+export const router: IRouter = {
+  routes,
+  navigateBack,
+  navigateTo
+}
+
+export default router;

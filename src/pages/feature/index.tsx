@@ -2,8 +2,8 @@ import * as React from 'react';
 import Taro from '@tarojs/taro'
 import './index.scss'
 import { AtGrid, } from 'taro-ui'
-import { AtGridProps, AtGridItem } from 'taro-ui/types/grid';
-import routes, { navigateTo } from '@/router';
+import { AtGridItem } from 'taro-ui/types/grid';
+// import { routes, navigateTo } from '@/router';
 // import fetchData from '@/service'
 // http://42.192.74.35:8080/query/getLocationByIdCard
 
@@ -11,7 +11,7 @@ import routes, { navigateTo } from '@/router';
 interface IState<T> {
   list: Array<T>
 }
-export default class FeaturePage extends React.Component<any, IState<AtGridItem>> {
+export default class FeaturePage extends React.Component<IAPP_WX.IProps, IState<AtGridItem>> {
 
   constructor(props) {
     super(props);
@@ -52,10 +52,9 @@ export default class FeaturePage extends React.Component<any, IState<AtGridItem>
   }
 
   handleClick = (item: AtGridItem, i: number): void => {
-    console.log('item: ', item);
-    console.log('i: ', i);
+    // js 结构语法
+    const { router: { routes, navigateTo } } = this.props;
     const path = routes[item.type]
-    console.log('path: ', path);
     if (path) {
       navigateTo({ url: path });
     }
@@ -66,7 +65,6 @@ export default class FeaturePage extends React.Component<any, IState<AtGridItem>
   }
   render() {
     const { list } = this.state;
-    console.log('this.props.children:1 ', this.props.children);
     return (
       <AtGrid data={list} onClick={this.handleClick} />
     )
