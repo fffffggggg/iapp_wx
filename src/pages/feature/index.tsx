@@ -1,31 +1,34 @@
 import * as React from 'react';
-import { View, Text, Swiper, SwiperItem } from '@tarojs/components'
 import Taro from '@tarojs/taro'
 import './index.scss'
-import { AtButton, AtInput } from 'taro-ui'
-import fetchData from '../../service'
+import { AtGrid, } from 'taro-ui'
+import { AtGridProps, AtGridItem } from 'taro-ui/types/grid';
+import routes, { navigateTo } from '@/router';
+// import fetchData from '@/service'
 // http://42.192.74.35:8080/query/getLocationByIdCard
-export default class FeaturePage extends React.Component<any, any> {
+
+
+interface IState<T> {
+  list: Array<T>
+}
+export default class FeaturePage extends React.Component<any, IState<AtGridItem>> {
 
   constructor(props) {
     super(props);
     this.state = {
-      idCard: ""
+      list: [
+        {
+          value: "身份证查询",
+          iconInfo: { value: "credit-card", color: "#108ee9" },
+          type: "idCard"
+        },
+        {
+          iconInfo: { value: "phone", color: "#106ee9" },
+          value: "手机号码查询",
+          type: "phone"
+        },
+      ]
     }
-  }
-
-  IDCardHandleChange = (value) => {
-    console.log('value: ', value);
-    this.setState({
-      idCard: value
-    })
-  }
-  searchIdCard = async () => {
-    const { idCard } = this.state;
-    console.log('idCard: ', idCard);
-    // const res = await Taro.request({ url: 'https://www.shijinzhengqian.cn/query/getLocationByIdCard', data: { requestData: { idCard } }, method: 'POST' })
-    const res = await fetchData.post("getLocationByIdCard", { requestData: { idCard } })
-    console.log('res: ', res);
   }
 
   init = () => {
@@ -48,42 +51,24 @@ export default class FeaturePage extends React.Component<any, any> {
 
   }
 
+  handleClick = (item: AtGridItem, i: number): void => {
+    console.log('item: ', item);
+    console.log('i: ', i);
+    const path = routes[item.type]
+    console.log('path: ', path);
+    if (path) {
+      navigateTo({ url: path });
+    }
+  }
+
   componentDidMount() {
     this.init();
   }
   render() {
+    const { list } = this.state;
+    console.log('this.props.children:1 ', this.props.children);
     return (
-      <View>
-        <Swiper
-          className='swiper-box'
-          indicatorColor='#999'
-          indicatorActiveColor='#333'
-          vertical
-          circular
-          indicatorDots
-          autoplay>
-          <SwiperItem className="swiper-item">
-            <View className='demo-text-1'>1</View>
-          </SwiperItem>
-          <SwiperItem>
-            <View className='demo-text-2'>2</View>
-          </SwiperItem>
-          <SwiperItem className="swiper-item">
-            <View className='demo-text-3'>3</View>
-          </SwiperItem>
-        </Swiper>
-        <View>
-          <AtInput
-            name='idCard'
-            title='idCard'
-            type='text'
-            placeholder='idCard'
-            value={this.state.idCard}
-            onChange={this.IDCardHandleChange}
-          />
-          <AtButton onClick={this.searchIdCard}>查询</AtButton>
-        </View>
-      </View>
+      <AtGrid data={list} onClick={this.handleClick} />
     )
   }
 }
