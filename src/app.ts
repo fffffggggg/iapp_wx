@@ -1,6 +1,8 @@
-import { Component } from 'react'
+import React, { Component } from 'react'
 import './app.scss'
 import 'taro-ui/dist/style/index.scss' // 全局引入一次即可
+import router from './router';
+import fetchData from './service'
 
 class App extends Component {
 
@@ -14,8 +16,9 @@ class App extends Component {
 
   // this.props.children 是将要会渲染的页面
   render() {
-    console.log('this.props.children: ', this.props.children);
-    return this.props.children
+    return React.Children.map(this.props.children, (child) => {
+      return React.cloneElement(child as React.ReactElement, { router, fetchData })
+    })
   }
 }
 

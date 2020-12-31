@@ -3,7 +3,7 @@ export default {
     'pages/index/index',
     'pages/feature/index',
     'pages/user/index',
-    // 'pages/index/index'
+    'pages/idCard/index'
   ],
   // 微信原生tabBar配置通过url跳转
   tabBar: {

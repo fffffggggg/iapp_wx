@@ -5,7 +5,8 @@ interface IApi {
 const domain: string = "https://www.shijinzhengqian.cn";
 
 const api: IApi = {
-  getLocationByIdCard: "/query/getLocationByIdCard"
+  getLocationByIdCard: "/query/getLocationByIdCard",
+  getLocationByMobile: "/query/getLocationByMobile"
 }
 
 export { api, domain }
