@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Taro from '@tarojs/taro'
 import './index.scss'
 import { AtGrid, } from 'taro-ui'
 import { AtGridItem } from 'taro-ui/types/grid';
@@ -32,12 +31,13 @@ export default class FeaturePage extends React.Component<IAPP_WX.IProps, IState<
   }
 
   init = () => {
+    const { util } = this.props;
     // title
-    Taro.setNavigationBarTitle({
+    util.setNavigationBarTitle({
       title: '功能'
     })
     // 
-    Taro.setNavigationBarColor({
+    util.setNavigationBarColor({
       frontColor: '#ffffff',
       backgroundColor: '#106ee9',
       // animation: {
@@ -45,7 +45,7 @@ export default class FeaturePage extends React.Component<IAPP_WX.IProps, IState<
       //   timingFunc: 'easeIn'
       // }
     })
-    Taro.setBackgroundTextStyle({
+    util.setBackgroundTextStyle({
       textStyle: 'dark' // 下拉背景字体、loading 图的样式为dark
     })
 

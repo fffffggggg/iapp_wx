@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './index.scss'
 import { View, Text } from '@tarojs/components'
-import Taro from '@tarojs/taro'
+// import Taro from '@tarojs/taro'
 import md5 from 'js-md5';
 interface IProps extends IAPP_WX.IProps {
   // [name: string]: any
@@ -43,7 +43,7 @@ export default class HomePage extends React.Component<IProps, IState> {
 
   init = (): void => {
     const { util } = this.props;
-    this.getSystemInfo();
+    // this.getSystemInfo();
     // title
     util.setNavigationBarTitle({
       title: '主页'
@@ -63,7 +63,7 @@ export default class HomePage extends React.Component<IProps, IState> {
     // 显示红点
     // Taro.showTabBarRedDot({ index: 1 })
     // 设备电量
-    this.getBatteryInfo();
+    // this.getBatteryInfo();
     this.getLocation();
   }
 

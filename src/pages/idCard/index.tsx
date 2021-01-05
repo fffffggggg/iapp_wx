@@ -2,7 +2,7 @@ import * as React from 'react';
 import { View, Text } from '@tarojs/components'
 import { AtButton, AtInput, AtToast } from 'taro-ui'
 import './index.scss';
-export default class IDCardPage extends React.Component<any, any> {
+export default class IDCardPage extends React.Component<IAPP_WX.IProps, any> {
   constructor(props) {
     super(props);
     this.state = {
