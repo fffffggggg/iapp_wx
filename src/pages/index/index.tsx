@@ -42,13 +42,14 @@ export default class HomePage extends React.Component<IProps, IState> {
 
 
   init = (): void => {
+    const { util } = this.props;
     this.getSystemInfo();
     // title
-    Taro.setNavigationBarTitle({
+    util.setNavigationBarTitle({
       title: '主页'
     })
     // 
-    Taro.setNavigationBarColor({
+    util.setNavigationBarColor({
       frontColor: '#ffffff',
       backgroundColor: '#106ee9',
       // animation: {
@@ -56,7 +57,7 @@ export default class HomePage extends React.Component<IProps, IState> {
       //   timingFunc: 'easeIn'
       // }
     })
-    Taro.setBackgroundTextStyle({
+    util.setBackgroundTextStyle({
       textStyle: 'dark' // 下拉背景字体、loading 图的样式为dark
     })
     // 显示红点
