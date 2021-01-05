@@ -1,10 +1,10 @@
 import * as React from 'react';
 import './index.scss'
 import { View, Text } from '@tarojs/components'
-import Taro from '@tarojs/taro'
-
-interface IProps {
-  [name: string]: any
+// import Taro from '@tarojs/taro'
+import md5 from 'js-md5';
+interface IProps extends IAPP_WX.IProps {
+  // [name: string]: any
 }
 
 interface IState {
@@ -43,7 +43,7 @@ export default class HomePage extends React.Component<IProps, IState> {
 
   init = (): void => {
     const { util } = this.props;
-    this.getSystemInfo();
+    // this.getSystemInfo();
     // title
     util.setNavigationBarTitle({
       title: '主页'
@@ -63,8 +63,29 @@ export default class HomePage extends React.Component<IProps, IState> {
     // 显示红点
     // Taro.showTabBarRedDot({ index: 1 })
     // 设备电量
-    this.getBatteryInfo();
+    // this.getBatteryInfo();
+    this.getLocation();
+  }
 
+  getLocation = async () => {
+    const { util, fetchData } = this.props;
+    // wgs84 返回 gps 坐标，gcj02 返回可用于 Taro.openLocation 的坐标
+    let latitude: string, longitude: string;
+    const res = await util.getLocation({ type: "gcj02" });
+    latitude = res.latitude;
+    longitude = res.longitude;
+    // https://apis.map.qq.com/ws/geocoder/v1/?location=
+    const key = "VXSBZ-PLECW-O34RW-RIECV-ZSKP7-XRFEK";
+    const reqMD5 = md5(`/ws/geocoder/v1/?key=${key}&location=${latitude},${longitude}sRG73KxOJiHPWGarv8Fw9ykwHUdMgit`)
+    console.log('reqMD5: ', reqMD5);
+    const { data: { result } } = await fetchData.get("https://apis.map.qq.com/ws/geocoder/v1/", { location: latitude + "," + longitude, key, sig: reqMD5 })
+    console.log('result: ', result);
+    // const data = await util.chooseLocation({ latitude, longitude })
+    // console.log('data: ', data);
+    const { ad_info: { adcode, city_code } } = result;
+    console.log('adcode: ', adcode);
+    const a = await fetchData.get("https://restapi.amap.com/v3/weather/weatherInfo", { key: "9f37020a4dba655663f74df38ca06f88", city: adcode })
+    console.log('a: ', a);
   }
 
   componentDidMount() {

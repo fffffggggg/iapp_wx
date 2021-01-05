@@ -1,6 +1,6 @@
-import { setNavigationBarTitle, setNavigationBarColor, setBackgroundTextStyle } from '@tarojs/taro'
+import { setNavigationBarTitle, setNavigationBarColor, setBackgroundTextStyle, getLocation, chooseLocation } from '@tarojs/taro'
 
-const util = { setNavigationBarTitle, setNavigationBarColor, setBackgroundTextStyle };
-export { setNavigationBarTitle, setNavigationBarColor, setBackgroundTextStyle }
+const util = { setNavigationBarTitle, setNavigationBarColor, setBackgroundTextStyle, getLocation, chooseLocation };
+export { setNavigationBarTitle, setNavigationBarColor, setBackgroundTextStyle, getLocation, chooseLocation }
 
 export default util;

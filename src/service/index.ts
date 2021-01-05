@@ -25,7 +25,9 @@ export type methodsType = "OPTIONS" | "POST" | "GET" | "HEAD" | "PUT" | "DELETE"
  * @returns {RequestTask<any>} taro.request
  */
 const defaultRequest = (path: string, params: { [name: string]: any } = {}, method: methodsType = "GET", option?: request.Option): RequestTask<any> => {
-  const url: string = domain + api[path];
+  // 判断是否是https开头的地址
+  const hasDomain: boolean = path.startsWith('https://');
+  const url: string = hasDomain ? path : domain + api[path];
   const defaultOption: request.Option = { url, method, data: params };
   return request(Object.assign({}, defaultOption, option));
 }
